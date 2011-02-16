@@ -95,6 +95,10 @@ module Rack::Cache
     # default for compliance with RFC 2616.
     option_accessor :allow_revalidate
 
+    # Sepecified whether the cache should cache Set-Cookie headers when
+    # Caching a response from the backend server
+    option_accessor :cache_set_cookie
+
     # The underlying options Hash. During initialization (or outside of a
     # request), this is a default values Hash. During a request, this is the
     # Rack environment Hash. The default values Hash is merged in underneath

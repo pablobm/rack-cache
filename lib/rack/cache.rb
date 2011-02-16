@@ -26,6 +26,7 @@ require 'rack'
 #     set :entitystore, 'file:/var/cache/rack'
 #   end
 #   run app
+
 module Rack::Cache
   autoload :Request,      'rack/cache/request'
   autoload :Response,     'rack/cache/response'
