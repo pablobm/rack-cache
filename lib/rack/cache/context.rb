@@ -253,6 +253,10 @@ module Rack::Cache
 
     # Write the response to the cache.
     def store(response)
+      if cache_set_cookie? && cache_set_cookie == false
+        response.headers["Set-Cookie"]=nil
+      end  
+      
       metastore.store(@request, response, entitystore)
       response.headers['Age'] = response.age.to_s
     rescue Exception => e
