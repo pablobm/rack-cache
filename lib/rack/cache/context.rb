@@ -253,8 +253,10 @@ module Rack::Cache
 
     # Write the response to the cache.
     def store(response)
-      if cache_set_cookie? && cache_set_cookie == false
-        response.headers["Set-Cookie"]=nil
+      is_cache_set_cookie_set = ! cache_set_cookie.nil?
+      is_cache_set_cookie_set_to_false = cache_set_cookie == false
+      if is_cache_set_cookie_set && is_cache_set_cookie_set_to_false
+        response.headers.delete('Set-Cookie')
       end  
       
       metastore.store(@request, response, entitystore)
